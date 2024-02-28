@@ -79,7 +79,7 @@ body {
     background-color: transparent;
 }
 
-.icon-github {
+.icon-github,.inspired {
     text-decoration: none;
 }
 
@@ -136,7 +136,7 @@ body {
     top: 0;
     left: 0;
     color: #F1EBDD;
-    background-color: rgba(34, 33, 31, .95);
+    background-color: #22211f;
     border-bottom-left-radius: 14px;
     border-bottom-right-radius: 14px;
     z-index: 10;
@@ -175,11 +175,24 @@ body {
 }
 
 .start-b,
-.game-over-b, .developer-container>p {
+.game-over-b, .developer-container>div {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.developer-container>div{
+    text-align: center;
+}
+.developer-container>div>p:last-of-type{
+    margin-top: 15px;
+    font-size: 14px;
+}
+.inspired{
+    color: #F1EBDD;
+}
+.inspired:hover{
+    text-decoration: underline;
 }
 
 .difficulty-s,
@@ -209,7 +222,7 @@ body {
     font-size: 22px;
 }
 
-.items>div>p, .developer-container>p{
+.items>div>p, .developer-container>div>p:first-of-type{
     font-size: 20px;
 }
 

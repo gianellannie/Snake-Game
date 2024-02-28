@@ -15,12 +15,15 @@ let velocityX=0,velocityY=0;
 let score = 0;
 const scoreElement=document.querySelector(".score");
 const game=document.querySelector(".game");
+const highScoreElement=document.querySelector(".high-score");
 document.querySelector(".health-bar").style.display = "none";
 
 class SnakeGame{
-    constructor(x,y,gameBoard){
+    constructor(x,y,gameBoard,value,key){
         this.x=x;
         this.y=y;
+        this.value=value;
+        this.key=key;
         this.foodX=1;
         this.foodY=1;
         this.rotate=0;
@@ -79,6 +82,9 @@ class SnakeGame{
             this.snakeBody.push([this.foodX,this.foodY]);
             score++;
             scoreElement.innerHTML=`Score: ${score}`;
+            this.value=score>=this.value?score:this.value;
+            sessionStorage.setItem(this.key, this.value);
+            highScoreElement.innerHTML=`High Score: ${this.value}`;
         }
         for(let i=this.snakeBody.length-1;i>0;i--){
             this.snakeBody[i]=this.snakeBody[i-1];
@@ -118,8 +124,8 @@ class SnakeGame{
     }
 }
 class SGMedium extends SnakeGame{
-    constructor(x,y,gameBoard){
-        super(x,y,gameBoard);
+    constructor(x,y,gameBoard,value,key){
+        super(x,y,gameBoard,value,key);
         this.bombX=1;
         this.bombY=1;
         this.health=100;
@@ -154,6 +160,9 @@ class SGMedium extends SnakeGame{
             this.snakeBody.push([this.foodX,this.foodY]);
             score++;
             scoreElement.innerHTML=`Score: ${score}`;
+            this.value=score>=this.value?score:this.value;
+            sessionStorage.setItem(this.key, this.value);
+            highScoreElement.innerHTML=`High Score: ${this.value}`;
         }
         if(this.x===this.bombX && this.y===this.bombY){
             this.changeBombPosition();
@@ -176,8 +185,8 @@ class SGMedium extends SnakeGame{
     }
 }
 class SGHard extends SGMedium{
-    constructor(x,y,gameBoard){
-        super(x,y,gameBoard);
+    constructor(x,y,gameBoard,value,key){
+        super(x,y,gameBoard,value,key);
         this.blockX=1;
         this.blockY=1;
         this.health=100;
@@ -217,6 +226,9 @@ class SGHard extends SGMedium{
             this.snakeBody.push([this.foodX,this.foodY]);
             score++;
             scoreElement.innerHTML=`Score: ${score}`;
+            this.value=score>=this.value?score:this.value;
+            sessionStorage.setItem(this.key, this.value);
+            highScoreElement.innerHTML=`High Score: ${this.value}`;
         }
         else if(this.x===this.bombX && this.y===this.bombY){
             this.changeBombPosition();
@@ -248,7 +260,7 @@ const developerContainer=p=>{
         addClass("developer-container");
         let developerC = document.getElementById("container").classList.contains("developer-container");
         if (developerC) {
-            document.querySelector(".developer-container").innerHTML = "<p>Developer by Gianella Annie</p>";
+            document.querySelector(".developer-container").innerHTML = "<div><p>Developer by Gianella Annie</p><p>Inspired by <a class='inspired' href='https://www.youtube.com/@SINERGIA_AR'>SINERGIA</a></p></div>";
         }
         developerButton.addEventListener("click", ()=> {
             removeClass("developer-container");
@@ -279,40 +291,46 @@ const clickStartButton=()=>{
     let hardButton=document.querySelector(".hard-b");
 
     const clickEasyButton=()=>{
+        let highScoreEasy=sessionStorage.getItem('high-score-easy')||0;
         removeClass("difficulty-container");
         document.querySelector(".container").style.display = "none";
-        let snakeEasy = new SnakeGame(Math.floor(7/2),Math.floor(7/2),7);
+        let snakeEasy = new SnakeGame(Math.floor(7/2),Math.floor(7/2),7,highScoreEasy,'high-score-easy');
         setIntervalId=setInterval(snakeEasy.initGame.bind(snakeEasy), 300);
         document.addEventListener("keydown",snakeEasy.changeDirection.bind(snakeEasy));
         snakeEasy.changeFoodPosition();
         snakeEasy.initGame();
+        highScoreElement.innerHTML=`High Score: ${highScoreEasy}`;
     }
     const clickMediumButton=()=>{
+        let highScoreMedium=sessionStorage.getItem('high-score-medium')||0;
         removeClass("difficulty-container");
         document.querySelector(".game-details > hr").style.display = "none";
         document.querySelector(".health-bar").style.display = "block";
         drawGameBoard(14);
         document.querySelector(".container").style.display = "none";
-        let snakeMedium=new SGMedium(Math.floor(14/2),Math.floor(14/2),14);
+        let snakeMedium=new SGMedium(Math.floor(14/2),Math.floor(14/2),14,highScoreMedium,'high-score-medium');
         setIntervalId=setInterval(snakeMedium.initGame.bind(snakeMedium), 200);
         document.addEventListener("keydown",snakeMedium.changeDirection.bind(snakeMedium));
         snakeMedium.changeBombPosition();
         snakeMedium.changeFoodPosition();
         snakeMedium.initGame();
+        highScoreElement.innerHTML=`High Score: ${highScoreMedium}`;
     }
     const clickHardButton=()=>{
+        let highScoreHard=sessionStorage.getItem('high-score-hard')||0;
         removeClass("difficulty-container");
         document.querySelector(".game-details > hr").style.display = "none";
         document.querySelector(".health-bar").style.display = "block";
         drawGameBoard(28);
         document.querySelector(".container").style.display = "none";
-        let snakeHard=new SGHard(Math.floor(28/2),Math.floor(28/2),28);
+        let snakeHard=new SGHard(Math.floor(28/2),Math.floor(28/2),28,highScoreHard,'high-score-hard');
         setIntervalId=setInterval(snakeHard.initGame.bind(snakeHard), 100);
         document.addEventListener("keydown",snakeHard.changeDirection.bind(snakeHard));
         snakeHard.changeBombPosition();
         snakeHard.changeBlockPosition();
         snakeHard.changeFoodPosition();
         snakeHard.initGame();
+        highScoreElement.innerHTML=`High Score: ${highScoreHard}`;
     }
 
     easyButton.addEventListener("click", clickEasyButton);
