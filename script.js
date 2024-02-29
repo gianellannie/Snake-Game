@@ -258,6 +258,7 @@ const clickStartButton=()=>{
 
     document.querySelector(".easy-b").addEventListener("click", ()=>{
         let highScoreEasy=sessionStorage.getItem('high-score-easy')||0;
+        drawGameBoard(7);
         let snakeEasy = new SnakeGame(Math.floor(7/2),Math.floor(7/2),7,highScoreEasy,'high-score-easy');
         clickButton(snakeEasy,300);
         highScoreElement.innerHTML=`High Score: ${highScoreEasy}`;
