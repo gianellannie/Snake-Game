@@ -1,0 +1,33 @@
+<svg width="720" height="420" viewBox="0 0 720 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="5" y="5" width="710" height="410" rx="21" fill="#22211F" stroke="#393834" stroke-width="10"/>
+<rect x="120" y="300" width="60" height="60" fill="#F1EBDD"/>
+<line x1="120" y1="329.3" x2="180" y2="329.3" stroke="#22211F" stroke-width="5"/>
+<line x1="120" y1="343.7" x2="180" y2="343.7" stroke="#22211F" stroke-width="5"/>
+<line x1="120" y1="314.3" x2="180" y2="314.3" stroke="#22211F" stroke-width="5"/>
+<line x1="134.3" y1="360" x2="134.3" y2="345" stroke="#22211F" stroke-width="5"/>
+<line x1="167.3" y1="345" x2="167.3" y2="330" stroke="#22211F" stroke-width="5"/>
+<line x1="134.3" y1="330.6" x2="134.3" y2="315.6" stroke="#22211F" stroke-width="5"/>
+<line x1="167.3" y1="315" x2="167.3" y2="300" stroke="#22211F" stroke-width="5"/>
+<rect x="180" y="120" width="60" height="60" fill="#F1EBDD"/>
+<line x1="180" y1="149.3" x2="240" y2="149.3" stroke="#22211F" stroke-width="5"/>
+<line x1="180" y1="163.7" x2="240" y2="163.7" stroke="#22211F" stroke-width="5"/>
+<line x1="180" y1="134.3" x2="240" y2="134.3" stroke="#22211F" stroke-width="5"/>
+<line x1="194.3" y1="180" x2="194.3" y2="165" stroke="#22211F" stroke-width="5"/>
+<line x1="227.3" y1="165" x2="227.3" y2="150" stroke="#22211F" stroke-width="5"/>
+<line x1="194.3" y1="150.6" x2="194.3" y2="135.6" stroke="#22211F" stroke-width="5"/>
+<line x1="227.3" y1="135" x2="227.3" y2="120" stroke="#22211F" stroke-width="5"/>
+<circle cx="570" cy="270" r="30" fill="#F1EBDD"/>
+<circle cx="390" cy="150" r="30" fill="#F1EBDD"/>
+<rect x="180" y="180" width="60" height="180" fill="#6DC825"/>
+<rect x="300" y="60" width="300" height="60" fill="#6DC825"/>
+<rect x="300" y="60" width="60" height="180" fill="#6DC825"/>
+<rect x="300" y="180" width="360" height="60" fill="#6DC825"/>
+<rect x="600" y="180" width="60" height="180" fill="#6DC825"/>
+<rect x="180" y="300" width="480" height="60" fill="#6DC825"/>
+<rect x="240" y="240" width="120" height="60" transform="rotate(-180 240 240)" fill="#6DC825"/>
+<circle cx="90" cy="210" r="30" fill="#DC2828"/>
+<circle cx="150" cy="196.8" r="9.6" transform="rotate(-180 150 196.8)" fill="white"/>
+<circle cx="147" cy="196.8" r="6.6" transform="rotate(-180 147 196.8)" fill="#22211F"/>
+<circle cx="150" cy="223.2" r="9.6" transform="rotate(-180 150 223.2)" fill="white"/>
+<circle cx="147" cy="223.2" r="6.6" transform="rotate(-180 147 223.2)" fill="#22211F"/>
+</svg>
