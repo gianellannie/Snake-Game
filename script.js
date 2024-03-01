@@ -291,7 +291,7 @@ const clickInfoButton=()=>{
     addClass("info-container");
     let infoC = document.getElementById("container").classList.contains("info-container");
     if (infoC) {
-        document.querySelector(".info-container").innerHTML = "<div class='info-s'><div class='items'><div><img src='img/food.svg' alt='food'><p>Food</p></div><div><img src='img/bomb.svg' alt='bomb'><p>Bomb</p></div><div><img src='img/block.svg' alt='block'><p>Block</p></div></div><button class='button exit-b'>Exit</button><div>";
+        document.querySelector(".info-container").innerHTML = "<div class='info-s'><div><div class='item'><img src='img/food.svg' alt='food'><div><p>FOOD</p><p>It increases your score.</p></div></div><div class='item'><img src='img/bomb.svg' alt='bomb'><div><p>BOMB</p><p>It decreases your health bar.</p></div></div><div class='item'><img src='img/block.svg' alt='block'><div><p>BLOCK</p><p>If you touch it, you lose the game.</p></div></div></div><button class='button exit-b'>Exit</button><div>";
     }
     const clickExitButton=()=>{
         removeClass("info-container");

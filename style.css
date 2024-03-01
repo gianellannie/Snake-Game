@@ -207,24 +207,25 @@ body {
     gap: 20px;
 }
 
-.items>div {
+.item{
     display: flex;
     align-items: center;
     gap: 30px;
     margin-bottom: 40px;
 }
 
-.items>div>p {
+.item>div {
     flex-grow: 1;
+}
+
+.item>div>p:first-of-type{
+    font-size: 20px;
+    margin-bottom: 15px;
 }
 
 .difficulty-s>p,.developer-container>div>p:first-of-type {
     margin-bottom: 20px;
     font-size: 22px;
-}
-
-.items>div>p{
-    font-size: 20px;
 }
 
 .game {
@@ -287,12 +288,9 @@ body {
         height: 706px;
         box-shadow: none;
     }
-    .items>div>img {
-        width: 50%;
-        height: 50%;
-    }
-    .items>div>p {
-        font-size: 18px;
+    .item>img {
+        width: 85px;
+        height: 85px;
     }
     .game {
         width: 560px;
@@ -308,18 +306,21 @@ body {
     .game-header>h1 {
         font-size: 32px;
     }
-    .items>div>img {
-        width: 35%;
-        height: 35%;
+    .item>img {
+        width: 60px;
+        height: 60px;
     }
-    .items>div>p {
+    .item>div>p:first-of-type {
         font-size: 16px;
+    }
+    .item>div>p:last-of-type {
+        font-size: 14px;
     }
     .info-s{
         gap: 10px;
     }
-    .items>div{
-        margin-bottom: 30px;
+    .item{
+        margin: 0 30px 30px;
     }
     .game {
         width: 420px;
@@ -371,7 +372,7 @@ body {
         width: 350px;
         height: 350px;
     }
-    .items>div{
+    .item{
         margin-bottom: 25px;
     }
 }
