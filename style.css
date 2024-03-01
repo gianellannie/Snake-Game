@@ -184,11 +184,10 @@ body {
 }
 .developer-container>div{
     text-align: center;
-    width: 100%;
+    width: 80%;
 }
 .developer-container>div>p:last-of-type{
-    margin-top: 15px;
-    font-size: 14px;
+    font-size: 15px;
 }
 .inspired{
     color: #F1EBDD;
@@ -219,12 +218,12 @@ body {
     flex-grow: 1;
 }
 
-.difficulty-s>p {
+.difficulty-s>p,.developer-container>div>p:first-of-type {
     margin-bottom: 20px;
     font-size: 22px;
 }
 
-.items>div>p, .developer-container>div>p:first-of-type{
+.items>div>p{
     font-size: 20px;
 }
 
@@ -350,6 +349,9 @@ body {
     }
     .difficulty-s>p,.button,.developer-container>div>p:first-of-type {
         font-size: 18px;
+    }
+    .developer-container>div>p:last-of-type{
+        font-size: 12px;
     }
     .button {
         width: 220px;

@@ -233,7 +233,7 @@ const developerContainer=param=>{
         addClass("developer-container");
         let developerC = document.getElementById("container").classList.contains("developer-container");
         if (developerC) {
-            document.querySelector(".developer-container").innerHTML = "<div><p>Developer by Gianella Annie</p><p>Inspired by <a class='inspired' href='https://www.youtube.com/@SINERGIA_AR'>SINERGIA</a></p></div>";
+            document.querySelector(".developer-container").innerHTML = "<div><p>Developer by Gianella Annie - 2024</p><p>Inspired by <a class='inspired' href='https://www.youtube.com/@SINERGIA_AR'>SINERGIA</a></p></div>";
         }
         developerButton.addEventListener("click", ()=> {
             removeClass("start-container");
