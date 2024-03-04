@@ -11,7 +11,7 @@ function clickButton(snakeClass,param){
     removeClass("difficulty-container");
     document.querySelector(".container").style.display = "none";
     setIntervalId=setInterval(snakeClass.initGame.bind(snakeClass), param);
-    document.addEventListener("keydown",snakeClass.changeDirection.bind(snakeClass));
+    document.addEventListener("keydown",snakeClass.arrows.bind(snakeClass));
     snakeClass.changeFoodPosition();
     snakeClass.initGame();
 }
@@ -42,24 +42,24 @@ class SnakeGame{
         this.foodX=Math.floor(Math.random()*this.gameBoard+1); 
         this.foodY=Math.floor(Math.random()*this.gameBoard+1);
     }
-    changeDirection(e){
+    changeDirection(event){
         switch (true) {
-            case e.key==="ArrowUp" && velocityY!==1:
+            case event==="ArrowUp" && velocityY!==1:
                 velocityX=0;
                 velocityY=-1;
                 this.rotate=-90;
                 break;
-            case e.key==="ArrowDown" && velocityY!==-1:
+            case event==="ArrowDown" && velocityY!==-1:
                 velocityX=0;
                 velocityY=1;
                 this.rotate=90;
                 break;
-            case e.key==="ArrowLeft" && velocityX!==1:
+            case event==="ArrowLeft" && velocityX!==1:
                 velocityX=-1;
                 velocityY=0;
                 this.rotate=180;
                 break;
-            case e.key==="ArrowRight" && velocityX!==-1:
+            case event==="ArrowRight" && velocityX!==-1:
                 velocityX=1;
                 velocityY=0;
                 this.rotate=0;
@@ -67,6 +67,13 @@ class SnakeGame{
             default:
                 break;
         }
+    }
+    handleInteraction(e){
+        this.changeDirection(e);
+        this.initGame();
+    }
+    arrows(e){
+        this.changeDirection(e.key);
         this.initGame();
     }
     drawFood(){
@@ -137,7 +144,7 @@ class SGMedium extends SnakeGame{
         for (let i = 0; i < this.bombsQuantity; i++) {
             let bombX=Math.floor(Math.random()*this.gameBoard+1);
             let bombY=Math.floor(Math.random()*this.gameBoard+1);
-            this.bombPosition.push([bombX,bombY]);
+            if(bombX!==this.x&&bombY!==this.y) this.bombPosition.push([bombX,bombY]);
         }
     }
     drawBomb(){
@@ -201,7 +208,7 @@ class SGHard extends SGMedium{
         for (let i = 0; i < this.blocksQuantity; i++) {
             let blockX=Math.floor(Math.random()*this.gameBoard+1);
             let blockY=Math.floor(Math.random()*this.gameBoard+1);
-            this.blockPosition.push([blockX,blockY]);
+            if(blockX!==this.x&&blockY!==this.y) this.blockPosition.push([blockX,blockY]);
         }
     }
     drawBlock(){
@@ -256,11 +263,38 @@ const clickStartButton=()=>{
         document.querySelector(".difficulty-container").innerHTML = "<div class='difficulty-s'><p>Select difficulty:</p><button class='button easy-b'>Easy</button><button class='button medium-b'>Medium</button><button class='button hard-b'>Hard</button></div>";
     }
 
+    let startingX, startingY, endingX, endingY;
+    let moving = false;
+    function touchstart(event) {
+        startingX = event.touches[0].clientX;
+        startingY = event.touches[0].clientY;
+    }
+    function touchmove(event) {
+        moving = true;
+        endingX = event.touches[0].clientX;
+        endingY = event.touches[0].clientY;
+    }
+
     document.querySelector(".easy-b").addEventListener("click", ()=>{
         let highScoreEasy=sessionStorage.getItem('high-score-easy')||0;
         drawGameBoard(7);
         let snakeEasy = new SnakeGame(Math.floor(7/2),Math.floor(7/2),7,highScoreEasy,'high-score-easy');
         clickButton(snakeEasy,300);
+        function touchend(event) {
+            if (!moving) return;
+            let touchDirection;
+            if ( Math.abs(endingX - startingX) > Math.abs(endingY - startingY) ) {
+                if ( endingX > startingX ) touchDirection = "ArrowRight";
+                else touchDirection = "ArrowLeft";
+            } else {
+                if ( endingY > startingY ) touchDirection = "ArrowDown";
+                else touchDirection = "ArrowUp";
+            }
+            snakeEasy.handleInteraction(touchDirection);
+            event.preventDefault();
+            moving = false;
+        }
+        document.addEventListener("touchend", touchend);
         highScoreElement.innerHTML=`High Score: ${highScoreEasy}`;
     });
     document.querySelector(".medium-b").addEventListener("click", ()=>{
@@ -271,6 +305,21 @@ const clickStartButton=()=>{
         let snakeMedium=new SGMedium(Math.floor(14/2),Math.floor(14/2),14,highScoreMedium,'high-score-medium',14);
         snakeMedium.changeBombPosition();
         clickButton(snakeMedium,200);
+        function touchend(event) {
+            if (!moving) return;
+            let touchDirection;
+            if ( Math.abs(endingX - startingX) > Math.abs(endingY - startingY) ) {
+                if ( endingX > startingX ) touchDirection = "ArrowRight";
+                else touchDirection = "ArrowLeft";
+            } else {
+                if ( endingY > startingY ) touchDirection = "ArrowDown";
+                else touchDirection = "ArrowUp";
+            }
+            snakeMedium.handleInteraction(touchDirection);
+            event.preventDefault();
+            moving = false;
+        }
+        document.addEventListener("touchend", touchend);
         highScoreElement.innerHTML=`High Score: ${highScoreMedium}`;
     });
     document.querySelector(".hard-b").addEventListener("click", ()=>{
@@ -282,8 +331,26 @@ const clickStartButton=()=>{
         snakeHard.changeBombPosition();
         snakeHard.changeBlockPosition();
         clickButton(snakeHard,100);
+        function touchend(event) {
+            if (!moving) return;
+            let touchDirection;
+            if ( Math.abs(endingX - startingX) > Math.abs(endingY - startingY) ) {
+                if ( endingX > startingX ) touchDirection = "ArrowRight";
+                else touchDirection = "ArrowLeft";
+            } else {
+                if ( endingY > startingY ) touchDirection = "ArrowDown";
+                else touchDirection = "ArrowUp";
+            }
+            snakeHard.handleInteraction(touchDirection);
+            event.preventDefault();
+            moving = false;
+        }
+        document.addEventListener("touchend", touchend);
         highScoreElement.innerHTML=`High Score: ${highScoreHard}`;
     });
+
+    document.addEventListener("touchstart", touchstart);
+    document.addEventListener("touchmove", touchmove);
 }
 const clickInfoButton=()=>{
     developerContainer("clickInfoButton");

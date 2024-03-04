@@ -32,6 +32,7 @@ body {
 }
 
 body {
+    overflow: hidden;
     font-family: "JetBrains Mono", monospace;
     background-image: url(img/background.svg);
     background-repeat: no-repeat;
