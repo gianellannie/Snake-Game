@@ -10,6 +10,7 @@ function drawGameBoard(param){
 function clickButton(snakeClass,param){
     removeClass("difficulty-container");
     document.querySelector(".container").style.display = "none";
+    snakeClass.handleInteraction();
     setIntervalId=setInterval(snakeClass.initGame.bind(snakeClass), param);
     document.addEventListener("keydown",snakeClass.arrows.bind(snakeClass));
     snakeClass.changeFoodPosition();
@@ -67,14 +68,40 @@ class SnakeGame{
             default:
                 break;
         }
-    }
-    handleInteraction(e){
-        this.changeDirection(e);
         this.initGame();
+    }
+    handleInteraction(){
+        let startingX, startingY, endingX, endingY;
+        let moving = false;
+        const touchstart=(event)=> {
+            startingX = event.touches[0].clientX;
+            startingY = event.touches[0].clientY;
+        }
+        const touchmove=(event)=> {
+            moving = true;
+            endingX = event.touches[0].clientX;
+            endingY = event.touches[0].clientY;
+        }
+        const touchend=(event)=> {
+            if (!moving) return;
+            let touchDirection;
+            if ( Math.abs(endingX - startingX) > Math.abs(endingY - startingY) ) {
+                if ( endingX > startingX ) touchDirection = "ArrowRight";
+                else touchDirection = "ArrowLeft";
+            } else {
+                if ( endingY > startingY ) touchDirection = "ArrowDown";
+                else touchDirection = "ArrowUp";
+            }
+            this.changeDirection(touchDirection);
+            event.preventDefault();
+            moving = false;
+        }
+        document.addEventListener("touchend", touchend);
+        document.addEventListener("touchstart", touchstart);
+        document.addEventListener("touchmove", touchmove);
     }
     arrows(e){
         this.changeDirection(e.key);
-        this.initGame();
     }
     drawFood(){
         htmlMarkup=`<div style="grid-area:${this.foodY}/${this.foodX}"><img src="img/food.svg" alt="food"></div>`;
@@ -263,38 +290,11 @@ const clickStartButton=()=>{
         document.querySelector(".difficulty-container").innerHTML = "<div class='difficulty-s'><p>Select difficulty:</p><button class='button easy-b'>Easy</button><button class='button medium-b'>Medium</button><button class='button hard-b'>Hard</button></div>";
     }
 
-    let startingX, startingY, endingX, endingY;
-    let moving = false;
-    function touchstart(event) {
-        startingX = event.touches[0].clientX;
-        startingY = event.touches[0].clientY;
-    }
-    function touchmove(event) {
-        moving = true;
-        endingX = event.touches[0].clientX;
-        endingY = event.touches[0].clientY;
-    }
-
     document.querySelector(".easy-b").addEventListener("click", ()=>{
         let highScoreEasy=sessionStorage.getItem('high-score-easy')||0;
         drawGameBoard(7);
         let snakeEasy = new SnakeGame(Math.floor(7/2),Math.floor(7/2),7,highScoreEasy,'high-score-easy');
         clickButton(snakeEasy,300);
-        function touchend(event) {
-            if (!moving) return;
-            let touchDirection;
-            if ( Math.abs(endingX - startingX) > Math.abs(endingY - startingY) ) {
-                if ( endingX > startingX ) touchDirection = "ArrowRight";
-                else touchDirection = "ArrowLeft";
-            } else {
-                if ( endingY > startingY ) touchDirection = "ArrowDown";
-                else touchDirection = "ArrowUp";
-            }
-            snakeEasy.handleInteraction(touchDirection);
-            event.preventDefault();
-            moving = false;
-        }
-        document.addEventListener("touchend", touchend);
         highScoreElement.innerHTML=`High Score: ${highScoreEasy}`;
     });
     document.querySelector(".medium-b").addEventListener("click", ()=>{
@@ -305,21 +305,6 @@ const clickStartButton=()=>{
         let snakeMedium=new SGMedium(Math.floor(14/2),Math.floor(14/2),14,highScoreMedium,'high-score-medium',14);
         snakeMedium.changeBombPosition();
         clickButton(snakeMedium,200);
-        function touchend(event) {
-            if (!moving) return;
-            let touchDirection;
-            if ( Math.abs(endingX - startingX) > Math.abs(endingY - startingY) ) {
-                if ( endingX > startingX ) touchDirection = "ArrowRight";
-                else touchDirection = "ArrowLeft";
-            } else {
-                if ( endingY > startingY ) touchDirection = "ArrowDown";
-                else touchDirection = "ArrowUp";
-            }
-            snakeMedium.handleInteraction(touchDirection);
-            event.preventDefault();
-            moving = false;
-        }
-        document.addEventListener("touchend", touchend);
         highScoreElement.innerHTML=`High Score: ${highScoreMedium}`;
     });
     document.querySelector(".hard-b").addEventListener("click", ()=>{
@@ -331,26 +316,8 @@ const clickStartButton=()=>{
         snakeHard.changeBombPosition();
         snakeHard.changeBlockPosition();
         clickButton(snakeHard,100);
-        function touchend(event) {
-            if (!moving) return;
-            let touchDirection;
-            if ( Math.abs(endingX - startingX) > Math.abs(endingY - startingY) ) {
-                if ( endingX > startingX ) touchDirection = "ArrowRight";
-                else touchDirection = "ArrowLeft";
-            } else {
-                if ( endingY > startingY ) touchDirection = "ArrowDown";
-                else touchDirection = "ArrowUp";
-            }
-            snakeHard.handleInteraction(touchDirection);
-            event.preventDefault();
-            moving = false;
-        }
-        document.addEventListener("touchend", touchend);
         highScoreElement.innerHTML=`High Score: ${highScoreHard}`;
     });
-
-    document.addEventListener("touchstart", touchstart);
-    document.addEventListener("touchmove", touchmove);
 }
 const clickInfoButton=()=>{
     developerContainer("clickInfoButton");
