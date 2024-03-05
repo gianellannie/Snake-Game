@@ -148,13 +148,13 @@ class SnakeGame{
             if(imagenSnakeBody) imagenSnakeBody.src="img/dead-body.svg";
         }
         setTimeout(function(){
-            document.querySelector(".container").style.display = "block";
+            document.querySelector(".container").style.display = "flex";
             addClass("game-over-container");
             let gameOverC = document.getElementById("container").classList.contains("game-over-container");
             if (gameOverC) {
-                document.querySelector(".game-over-container").innerHTML = "<button class='button game-over-b'>Game Over</button>";
+                document.querySelector(".game-over-container").innerHTML = "<button class='button'>Game Over</button>";
             }
-            document.querySelector(".game-over-b").addEventListener("click",()=>location.reload());
+            document.querySelector(".game-over-container>.button").addEventListener("click",()=>location.reload());
         }, 1500);
     }
 }
@@ -267,7 +267,7 @@ const developerContainer=param=>{
         addClass("developer-container");
         let developerC = document.getElementById("container").classList.contains("developer-container");
         if (developerC) {
-            document.querySelector(".developer-container").innerHTML = "<div><p>Developer by Gianella Annie - 2024</p><p>Inspired by <a class='inspired' href='https://www.youtube.com/@SINERGIA_AR'>SINERGIA</a></p></div>";
+            document.querySelector(".developer-container").innerHTML = "<p>Developer by Gianella Annie - 2024</p><p>Inspired by <a href='https://www.youtube.com/@SINERGIA_AR'>SINERGIA</a></p>";
         }
         developerButton.addEventListener("click", ()=> {
             removeClass("start-container");
@@ -287,7 +287,7 @@ const clickStartButton=()=>{
     addClass("difficulty-container");
     let difficultyC = document.getElementById("container").classList.contains("difficulty-container");
     if (difficultyC) {
-        document.querySelector(".difficulty-container").innerHTML = "<div class='difficulty-s'><p>Select difficulty:</p><button class='button easy-b'>Easy</button><button class='button medium-b'>Medium</button><button class='button hard-b'>Hard</button></div>";
+        document.querySelector(".difficulty-container").innerHTML = "<p>Select difficulty:</p><button class='button easy-b'>Easy</button><button class='button medium-b'>Medium</button><button class='button hard-b'>Hard</button>";
     }
 
     document.querySelector(".easy-b").addEventListener("click", ()=>{
@@ -325,7 +325,7 @@ const clickInfoButton=()=>{
     addClass("info-container");
     let infoC = document.getElementById("container").classList.contains("info-container");
     if (infoC) {
-        document.querySelector(".info-container").innerHTML = "<div class='info-s'><div><div class='item'><img src='img/food.svg' alt='food'><div><p>FOOD</p><p>It increases your score.</p></div></div><div class='item'><img src='img/bomb.svg' alt='bomb'><div><p>BOMB</p><p>It decreases your health bar.</p></div></div><div class='item'><img src='img/block.svg' alt='block'><div><p>BLOCK</p><p>If you touch it, you lose the game.</p></div></div></div><button class='button exit-b'>Exit</button><div>";
+        document.querySelector(".info-container").innerHTML = "<div><div class='item'><img src='img/food.svg' alt='food'><div><p>FOOD</p><p>It increases your score.</p></div></div><div class='item'><img src='img/bomb.svg' alt='bomb'><div><p>BOMB</p><p>It decreases your health bar.</p></div></div><div class='item'><img src='img/block.svg' alt='block'><div><p>BLOCK</p><p>If you touch it, you lose the game.</p></div></div></div><button class='button exit-b'>Exit</button>";
     }
     const clickExitButton=()=>{
         removeClass("info-container");
@@ -338,9 +338,9 @@ const startContainer=()=>{
     addClass("start-container");
     let startC = document.getElementById("container").classList.contains("start-container");
     if (startC) {
-        document.querySelector(".start-container").innerHTML = "<button class='icon-info'><img src='img/info.svg' alt='info'></button><button class='button start-b'>Start Game</button>";
+        document.querySelector(".start-container").innerHTML = "<button class='icon-info'></button><button class='button'>Start Game</button>";
     }
-    document.querySelector(".start-b").addEventListener("click", clickStartButton);
+    document.querySelector(".start-container>.button").addEventListener("click", clickStartButton);
     document.querySelector(".icon-info").addEventListener("click", clickInfoButton);
 }
 
