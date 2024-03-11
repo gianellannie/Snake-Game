@@ -1,10 +1,10 @@
-<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="100" height="100" fill="#F1EBDD"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="none">
+<rect x="0.5" y="0.5" width="99" height="99" fill="#F1EBDD" stroke="#22211F"/>
 <line y1="50.5" x2="100" y2="50.5" stroke="#22211F" stroke-width="5"/>
 <line y1="74.5" x2="100" y2="74.5" stroke="#22211F" stroke-width="5"/>
 <line y1="25.5" x2="100" y2="25.5" stroke="#22211F" stroke-width="5"/>
-<line x1="25.5" y1="100" x2="25.5" y2="75" stroke="#22211F" stroke-width="5"/>
-<line x1="80.5" y1="75" x2="80.5" y2="50" stroke="#22211F" stroke-width="5"/>
-<line x1="25.5" y1="51" x2="25.5" y2="26" stroke="#22211F" stroke-width="5"/>
-<line x1="80.5" y1="25" x2="80.5" stroke="#22211F" stroke-width="5"/>
+<line x1="25.5001" y1="100" x2="25.5001" y2="75" stroke="#22211F" stroke-width="5"/>
+<line x1="80.5001" y1="75" x2="80.5001" y2="50" stroke="#22211F" stroke-width="5"/>
+<line x1="25.5001" y1="50.9999" x2="25.5001" y2="25.9999" stroke="#22211F" stroke-width="5"/>
+<line x1="80.5001" y1="25" x2="80.5001" stroke="#22211F" stroke-width="5"/>
 </svg>
