@@ -17,7 +17,14 @@
         <hr>
         <section class="game-body">
             <div id="container" class="container"></div>
-            <div class="game"></div>
+            <div id="canvas"></div>
+            <img hidden id="food" src="img/food.svg" alt="food">
+            <img hidden id="bomb" src="img/bomb.svg" alt="bomb">
+            <img hidden id="block" src="img/block.svg" alt="block">
+            <img hidden id="body" src="img/body.svg" alt="body">
+            <img hidden id="head" src="img/head.svg" alt="head">
+            <img hidden id="dead-head" src="img/dead-head.svg" alt="dead-head">
+            <img hidden id="dead-body" src="img/dead-body.svg" alt="dead-body">
             <section class="game-details">
                 <hr>
                 <div class="health-bar">
@@ -25,8 +32,8 @@
                     <p id="health">100%</p>
                 </div>
                 <div class="scores">
-                    <p class="score">Score: 0</p>
-                    <p class="high-score">High Score: 0</p>
+                    <p id="score" class="score">Score: 0</p>
+                    <p id="high-score" class="high-score">High Score: 0</p>
                 </div>
             </section>
         </section>
