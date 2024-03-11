@@ -219,22 +219,10 @@ body {
     font-size: 22px;
 }
 
-
-.game {
+#canvas {
     width: 700px;
     height: 700px;
-    display: grid;
 }
-.game>div {
-    font-size: 0;
-    line-height: 0;
-}
-.game>div>img {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
 
 .game-details>hr {
     background-color: #F1EBDD;
@@ -279,7 +267,7 @@ body {
         width: 85px;
         height: 85px;
     }
-    .game {
+    #canvas {
         width: 560px;
         height: 560px;
     }
@@ -313,7 +301,7 @@ body {
     .item{
         margin: 0 30px 35px;
     }
-    .game {
+    #canvas {
         width: 420px;
         height: 420px;
     }
@@ -359,8 +347,49 @@ body {
     .item>div>p:first-of-type{
         margin-bottom: 10px;
     }
-    .game {
+    #canvas {
         width: 350px;
         height: 350px;
+    }
+    .scores {
+        padding: 0 30px;
+        font-size: 14px;
+    }
+    .developer-container>p{
+        width: 80%;
+    }
+}
+@media screen and (max-width:360px){
+    .game-container {
+        width: 310px;
+        height: 446px;
+    }
+    .game-header>h1 {
+        font-size: 26px;
+        margin-left: 12px;
+    }
+    .item>img {
+        width: 50px;
+        height: 50px;
+    }
+    #canvas {
+        width: 300px;
+        height: 300px;
+    }
+    .button {
+        width: 180px;
+        height: 55px;
+    }
+    .item>div>p:first-of-type {
+        font-size: 14px;
+    }
+    .difficulty-container>p,
+    .button,
+    .developer-container>p:first-of-type {
+        font-size: 16px;
+    }
+    .developer-container>p:last-of-type,
+    .item>div>p:last-of-type{
+        font-size: 12px;
     }
 }
